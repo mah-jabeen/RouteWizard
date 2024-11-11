@@ -1,15 +1,20 @@
 <?php
 
 // Enable error reporting for debugging
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
-define('DS', DIRECTORY_SEPARATOR);
+// define('DS', DIRECTORY_SEPARATOR);
 
 class Node {
     var $arr = array('0' => 'alpha', '1' => 'beta', '2' => 'gamma', '3' => 'delta', '4' => 'epsilon');
-    
+    public $alpha;
+    public $beta;
+    public $gamma;
+    public $delta;
+    public $epsilon;
+
     // Set function is used to set the key and the value
     function set($key, $value) {
         $this->$key = $value;
@@ -34,7 +39,7 @@ class Node {
                     $this->set($key, $value);
                 }
             }
-            var_dump($this);
+            // var_dump($this); // For debugging
         }
 
         require_once "app" . DS . "controllers" . DS . "root.php";
@@ -59,7 +64,7 @@ class Node {
                         echo "Beta method: " . $beta . "<br>";
                         
                         if (method_exists($app, $beta)) {
-                            $app->$beta(); // Call the method
+                            $app->$beta($this->alpha,$this->beta); // Call the method
                         } else {
                             echo "Method '$beta' does not exist in class '$alpha'.";
                             $app->main(); // Default method if specified method doesn't exist
@@ -73,7 +78,7 @@ class Node {
                 }
             } else {
                 echo "File '$file' does not exist.";
-            } 
+            }
         } else {
             $root->main();
         }
@@ -82,3 +87,4 @@ class Node {
 
 $kite = new Node();
 $kite->router();
+?>

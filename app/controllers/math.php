@@ -8,7 +8,11 @@ class math
     }
     function add()
     {
-        echo "this is add";
+        $node= KITE::getinstance('node');
+        $a= $node->get('gamma');
+        $b=$node->get('delta');
+        $c=$a+$b;
+        echo "the additon of $a and $b is $c";
     }
 
     function multi()
