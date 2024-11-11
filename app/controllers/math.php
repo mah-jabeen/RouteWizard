@@ -1,19 +1,23 @@
 <?php
-class math{
+class math
+{
 
-    function main(){
-        echo"this is math main function";
+    function main()
+    {
+        echo "this is math main function";
     }
-    function add(){
+    function add()
+    {
         echo "this is add";
     }
-    
-    function multi(){
+
+    function multi()
+    {
         echo "this is multiply";
     }
-    
-    function sub(){
+
+    function sub()
+    {
         echo "this is subtract";
     }
-    
 }
