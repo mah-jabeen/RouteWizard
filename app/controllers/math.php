@@ -21,9 +21,14 @@ class math
 
         $c=$a+$b;
 
+
         //  now storing it and carrying it to the view
         $basket= KITE::getinstance('basket');
-        print_r($basket);
+        $basket->set('a',$a);
+        $basket->set('',$b);   
+        $basket->set('',$c);
+        
+        KITE::render('add');
     }
 
     function multi()

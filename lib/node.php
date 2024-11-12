@@ -1,14 +1,15 @@
 <?php
 
-// Enable error reporting for debugging
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 define('DS', DIRECTORY_SEPARATOR);
 
 class Node {
     var $arr = array('0' => 'alpha', '1' => 'beta', '2' => 'gamma', '3' => 'delta', '4' => 'epsilon');
+    public $alpha = null;
+    public $beta = null;
+    public $gamma = null;
+    public $delta = null;
+    public $epsilon = null;
 
     // Set function is used to set the key and the value
     function set($key, $value) {
@@ -38,7 +39,6 @@ class Node {
                     $this->set($key, $value);
                 }
             }
-            // var_dump($this); // For debugging
         }
 
         require_once "app" . DS . "controllers" . DS . "root.php";
@@ -49,8 +49,6 @@ class Node {
             $alpha = ucfirst($this->alpha); // Capitalize the first letter of the controller name
             $file = "app" . DS . "controllers" . DS . strtolower($alpha) . ".php";
 
-            // Debug output to verify file path
-            // echo "Looking for file: " . $file . "<br>";
 
             if (file_exists($file)) {
                 require_once $file;
@@ -59,8 +57,6 @@ class Node {
 
                     if (isset($this->beta)) {
                         $beta = $this->beta;
-                        // Debugging output to check the value of beta
-                        // echo "Beta method: " . $beta . "<br>";
 
                         if (method_exists($app, $beta)) {
                             $app->$beta($this->alpha, $this->beta); // Call the method
@@ -86,4 +82,3 @@ class Node {
 
 $kite = new Node();
 $kite->router();
-?>

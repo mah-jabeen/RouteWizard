@@ -1,7 +1,6 @@
 <?php
 
 // a class which holds the data to the view
-// define('DS', DIRECTORY_SEPARATOR);
 
 class basket {
     
@@ -18,7 +17,6 @@ class basket {
         return null;
         
         }
-        
             }
     
 }
