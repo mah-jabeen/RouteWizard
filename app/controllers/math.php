@@ -9,10 +9,21 @@ class math
     function add()
     {
         $node= KITE::getinstance('node');
-        $a= $node->get('gamma');
-        $b=$node->get('delta');
+        $a=$b=10;
+         if($node->get('gamma')!=null){
+            $a= $node->get('gamma');
+
+         }
+         if($node->get('delta')!=null){
+            $b=$node->get('delta');
+
+         }
+
         $c=$a+$b;
-        echo "the additon of $a and $b is $c";
+
+        //  now storing it and carrying it to the view
+        $basket= KITE::getinstance('basket');
+        print_r($basket);
     }
 
     function multi()

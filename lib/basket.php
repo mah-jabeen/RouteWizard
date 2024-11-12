@@ -12,8 +12,13 @@ class basket {
 
     // Get function to retrieve the stored value
     function get($key) {
-        return $this->$key;
-    }
-
+        if (isset($this->$key)) {
+            return $this->$key;
+        }else{
+        return null;
+        
+        }
+        
+            }
     
 }

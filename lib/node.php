@@ -1,19 +1,14 @@
 <?php
 
 // Enable error reporting for debugging
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-// define('DS', DIRECTORY_SEPARATOR);
+define('DS', DIRECTORY_SEPARATOR);
 
 class Node {
     var $arr = array('0' => 'alpha', '1' => 'beta', '2' => 'gamma', '3' => 'delta', '4' => 'epsilon');
-    public $alpha;
-    public $beta;
-    public $gamma;
-    public $delta;
-    public $epsilon;
 
     // Set function is used to set the key and the value
     function set($key, $value) {
@@ -22,7 +17,11 @@ class Node {
 
     // Get function to retrieve the stored value
     function get($key) {
-        return $this->$key;
+        if (isset($this->$key)) {
+            return $this->$key;
+        } else {
+            return null;
+        }
     }
 
     function router() {
@@ -51,7 +50,7 @@ class Node {
             $file = "app" . DS . "controllers" . DS . strtolower($alpha) . ".php";
 
             // Debug output to verify file path
-            echo "Looking for file: " . $file . "<br>";
+            // echo "Looking for file: " . $file . "<br>";
 
             if (file_exists($file)) {
                 require_once $file;
@@ -61,10 +60,10 @@ class Node {
                     if (isset($this->beta)) {
                         $beta = $this->beta;
                         // Debugging output to check the value of beta
-                        echo "Beta method: " . $beta . "<br>";
-                        
+                        // echo "Beta method: " . $beta . "<br>";
+
                         if (method_exists($app, $beta)) {
-                            $app->$beta($this->alpha,$this->beta); // Call the method
+                            $app->$beta($this->alpha, $this->beta); // Call the method
                         } else {
                             echo "Method '$beta' does not exist in class '$alpha'.";
                             $app->main(); // Default method if specified method doesn't exist
